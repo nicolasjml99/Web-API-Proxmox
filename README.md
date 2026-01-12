@@ -70,5 +70,15 @@ npm install express axios
 node index.js
 ```
 
-Opcional:
-![alt text](image.png)
+#### 7. Opcional - Activar el servidor automaticamente:
+Creamos un servicio en systemd:
+```bash
+nano /etc/systemd/system/proxmox-webui.service
+```
+Y Ponemos el contenido de proxmox-webui.service, lo activamos y arrancamos:
+```bash
+systemctl daemon-reload
+systemctl enable proxmox-webui
+systemctl start proxmox-webui
+systemctl status proxmox-webui
+```

@@ -1,0 +1,13 @@
+[Unit]
+Description=Proxmox WebUI Panel
+After=network.target
+
+[Service]
+WorkingDirectory=/root/proxmox-webui
+ExecStart=/usr/bin/node /root/proxmox-webui/index.js
+Restart=always
+User=root
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
