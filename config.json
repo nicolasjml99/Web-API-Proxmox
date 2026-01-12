@@ -1,0 +1,10 @@
+{
+  "proxmox_ip": "",
+  "node_name": "",
+  "token_id": "",
+  "token_secret": "",
+  "vms": {
+    "ID": { "name": "", "os": "" },
+    "ID": { "name": "", "os": "" },
+  }
+}

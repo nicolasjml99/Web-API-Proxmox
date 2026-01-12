@@ -30,16 +30,7 @@ Solo permitiremos al root entrar a él por seguridad
 nano /root/proxmox-webui/config.json
 chmod 600 config.json
 ```
-```bash
-Su contenido será similar a este
-{
-  "proxmox_ip": "",
-  "node_name": "",
-  "token_id": "",
-  "token_secret": "",
-  "allowed_vms": []
-}
-```
+
 Para tener el token debemos:  
 - Crear un usuario
 - Ir a Datacenter → Permissions → API Tokens → Darle Permiso de PVEVMUser

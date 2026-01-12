@@ -12,7 +12,8 @@ const PROXMOX_IP = config.proxmox_ip;
 const NODE_NAME = config.node_name;
 const TOKEN_ID = config.token_id;
 const TOKEN_SECRET = config.token_secret;
-const allowedVMs = config.allowed_vms;
+const vmConfig = config.vms;
+const allowedVMs = Object.keys(vmConfig).map(Number);
 
 /* ================= CLIENTE PROXMOX ================= */
 const proxmox = axios.create({
@@ -25,16 +26,21 @@ const proxmox = axios.create({
 app.get('/vms', async (req, res) => {
   try {
     const { data } = await proxmox.get(`/nodes/${NODE_NAME}/qemu`);
+
     const vms = data.data
       .filter(vm => allowedVMs.includes(vm.vmid))
       .map(vm => ({
         vmid: vm.vmid,
-        name: vm.name,
-        status: vm.status
+        name: vmConfig[vm.vmid]?.name || vm.name,
+        status: vm.status,
+        os: vmConfig[vm.vmid]?.os || 'unknown'
       }))
-      .sort((a, b) => a.vmid - b.vmid); // <-- orden ascendente por VMID
+      .sort((a, b) => a.vmid - b.vmid); // orden ascendente por VMID
+
     res.json(vms);
-  } catch (err) { res.status(500).json({ error: err.message }); }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 /* ================= CONTROL VM ================= */
