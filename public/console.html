@@ -123,10 +123,15 @@ async function loadVMs(){
       <div class="vm-header">
         <strong>${vm.name}</strong>
         <span class="os-icon">
-          <img src="${vm.os === 'windows' ? 'WindowsLogo.png' : 'LinuxLogo.png'}"
-            alt="${vm.os}">
+          <img 
+            src="${
+              vm.os === 'windows' ? 'WindowsLogo.png' :
+              vm.os === 'linux'   ? 'LinuxLogo.png'   :
+                                    'Unknown.png'
+            }"
+            alt="OS"
+          >
         </span>
-
       </div>
 
       Estado: <b>${vm.status}</b><br><br>
