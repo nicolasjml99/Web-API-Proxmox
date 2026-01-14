@@ -52,7 +52,7 @@ async function controlVM(vmid, action, res) {
   } catch (err) { res.status(500).json({ error: err.message }); }
 }
 
-['start','shutdown','reboot','hibernate','stop','reset'].forEach(action => {
+['start','shutdown','reboot','stop','reset'].forEach(action => {
   app.post(`/vms/:vmid/${action}`, (req,res)=>controlVM(parseInt(req.params.vmid),action,res));
 });
 
