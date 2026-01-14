@@ -4,7 +4,7 @@
   "token_id": "",
   "token_secret": "",
   "vms": {
-    "ID": { "name": "", "os": "" },
-    "ID": { "name": "", "os": "" }
+    "ID": { "name": "VmName", "os": "windows" },
+    "102": { "name": "VmName2", "os": "linux" }
   }
 }
